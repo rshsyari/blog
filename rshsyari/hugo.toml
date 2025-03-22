@@ -6,23 +6,27 @@ theme = "gokarna"
 [outputs]
 home = ["HTML", "RSS", "JSON"]
 
-[params.homeInfoParams]
-Title = "Blog of rshsyari"
-
 [params]
+  env = "production"
+  homeInfoParams = { Title = "Blog of rshsyari" }
+  mainSections = ["posts"] 
+
+  ShowCodeCopyButtons = true
+  footer = "rshsyari"
+  description = "Indonesia government sucks"
+  metaKeywords = ["blog", "gokarna", "hugo"]
+  showBackToTopButton = true
+  homeLayout = "list"
+  numberPostsOnHomePage = 4
+  showPostsOnHomePage = "recent"
+
+
   socialIcons = [
     {name = "linkedin", url = "https://www.linkedin.com/in/rshsyari"},
     {name = "github", url = "https://github.com/rshsyari"},
     {name = "instagram", url = "https://instagram.com/rshsyari"},
     {name = "email", url = "mailto:rshsyari@gmail.com"}
   ]
-
-  ShowCodeCopyButtons = true
-  description = "Indonesia government sucks"
-  footer = "rshsyari"
-  metaKeywords = ["blog", "gokarna", "hugo"]
-  showBackToTopButton = true
-
 
 [menu]
   [[menu.main]]
