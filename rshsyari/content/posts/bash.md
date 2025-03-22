@@ -3,15 +3,17 @@ date: 2025-03-22T21:13:52+07:00
 # description: ""
 # image: ""
 # lastmod: 2025-03-22
-#showTableOfContents: false
+showTableOfContents: true
 # tags: ["",]
-url: "/bash/"
-title: "Bash"
+# url: "/bash/"
+title: "Bash script tips"
 type: "post"
 draft: false
 ---
 
 For some small tasks, sometimes Bash script (shell script in general) is better than a full-blown program using programming languages. Here are some personal tips to write a Bash script:
+
+<!--more-->
 
 ## Exit on fail
 Use `set -o errexit` to make the script exit when it fails. If some commands are allowed to fail, `command1 || echo "command1 is failed, but continuing"` can be used.

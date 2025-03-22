@@ -5,6 +5,12 @@ languageCode = 'en-us'
 title = 'rshsyari'
 theme = "gokarna"
 
+[markup]
+  [markup.tableOfContents]
+    startLevel = 1
+    endLevel = 4
+    ordered = false
+
 [outputs]
 home = ["HTML", "RSS", "JSON"]
 
@@ -13,13 +19,12 @@ home = ["HTML", "RSS", "JSON"]
   homeInfoParams = { Title = "Blog of rshsyari" }
   mainSections = ["posts"] 
 
-  ShowCodeCopyButtons = true
   footer = "rshsyari"
   description = "Indonesia government sucks"
   metaKeywords = ["blog", "gokarna", "hugo"]
   showBackToTopButton = true
   homeLayout = "list"
-  numberPostsOnHomePage = 4
+  numberPostsOnHomePage = 5
   showPostsOnHomePage = "recent"
 
   socialIcons = [
@@ -47,4 +52,3 @@ home = ["HTML", "RSS", "JSON"]
     pre = "<span data-feather='code'></span>"
     url = "/projects/"
     weight = 3
-
