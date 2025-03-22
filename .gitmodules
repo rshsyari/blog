@@ -1,3 +1,7 @@
 [submodule "rshsyari/themes/gokarna"]
 	path = rshsyari/themes/gokarna
 	url = https://github.com/gokarna-theme/gokarna-hugo.git
+[submodule "rshsyari/public"]
+	path = rshsyari/public
+	url = https://github.com/rshsyari/rshsyari.github.io.git
+	branch = main
