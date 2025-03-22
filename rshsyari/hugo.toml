@@ -3,6 +3,12 @@ languageCode = 'en-us'
 title = 'rshsyari'
 theme = "gokarna"
 
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[params.homeInfoParams]
+Title = "Blog of rshsyari"
+
 [params]
   socialIcons = [
     {name = "linkedin", url = "https://www.linkedin.com/in/rshsyari"},
@@ -11,6 +17,7 @@ theme = "gokarna"
     {name = "email", url = "mailto:rshsyari@gmail.com"}
   ]
 
+  ShowCodeCopyButtons = true
   description = "Indonesia government sucks"
   footer = "rshsyari"
   metaKeywords = ["blog", "gokarna", "hugo"]
