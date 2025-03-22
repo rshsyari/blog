@@ -1,0 +1,38 @@
+baseURL = 'https://rshsyari.github.io/'
+languageCode = 'en-us'
+title = 'rshsyari'
+theme = "gokarna"
+
+[params]
+  socialIcons = [
+    {name = "linkedin", url = "https://www.linkedin.com/in/rshsyari"},
+    {name = "github", url = "https://github.com/rshsyari"},
+    {name = "instagram", url = "https://instagram.com/rshsyari"},
+    {name = "email", url = "mailto:rshsyari@gmail.com"}
+  ]
+
+  description = "Sky above, sand below and peace within"
+  footer = "rshsyari"
+  metaKeywords = ["blog", "gokarna", "hugo"]
+  showBackToTopButton = true
+
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    pre = "<span data-feather='home'></span>"
+    url = "/"
+    weight = 1
+
+  [[menu.main]]
+    name = "Posts"
+    pre = "<span data-feather='book'></span>"
+    url = "/posts/"
+    weight = 2
+
+  [[menu.main]]
+    name = "Projects"
+    pre = "<span data-feather='code'></span>"
+    url = "/projects/"
+    weight = 3
+

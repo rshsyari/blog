@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        :root {
+            --accent-color: #FF4D4D;
+            --font-size: 17.5px;
+        }
+    </style>
+
+    
+    
+    
+    
+    
+    
+
+    
+    <title>Bash</title>
+    <meta name="description" content="For some small tasks, sometimes Bash script (shell script in general) is better than a full-blown program using programming languages. Here are some personal …">
+    <meta name="keywords" content='blog, gokarna, hugo'>
+
+    <meta property="og:url" content="http://localhost:1313/posts/bash/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Bash">
+    <meta property="og:description" content="For some small tasks, sometimes Bash script (shell script in general) is better than a full-blown program using programming languages. Here are some personal …">
+    <meta property="og:image" content="http://localhost:1313/">
+    <meta property="og:image:secure_url" content="http://localhost:1313/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bash">
+    <meta name="twitter:description" content="For some small tasks, sometimes Bash script (shell script in general) is better than a full-blown program using programming languages. Here are some personal …">
+    <meta property="twitter:domain" content="http://localhost:1313/posts/bash/">
+    <meta property="twitter:url" content="http://localhost:1313/posts/bash/">
+    <meta name="twitter:image" content="http://localhost:1313/">
+
+    
+    <link rel="canonical" href="http://localhost:1313/posts/bash/">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/normalize.min.css" media="print">
+
+    
+    <link rel="stylesheet" type="text/css" href="/css/main.min.css">
+
+    
+    <link id="dark-theme" rel="stylesheet" href="/css/dark.min.css">
+
+    
+    <script src="/js/bundle.min.60fe9a4dcb5a42836ec53c446e239a9862be5c1f67da457c275b9bf9681d796b.js" integrity="sha256-YP6aTctaQoNuxTxEbiOamGK&#43;XB9n2kV8J1ub&#43;WgdeWs="></script>
+
+    
+    
+</head>
+<body>
+        <script>
+            
+            setThemeByUserPref();
+        </script><header class="header">
+    <nav class="header-nav">
+
+        
+
+        <div class="nav-title">
+            <a class="nav-brand" href="http://localhost:1313/">rshsyari</a>
+        </div>
+
+        <div class="nav-links">
+            
+            <div class="nav-link">
+                <a href="http://localhost:1313/" aria-label="" ><span data-feather='home'></span> Home </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="http://localhost:1313/posts/" aria-label="" ><span data-feather='book'></span> Posts </a>
+            </div>
+            
+            <div class="nav-link">
+                <a href="http://localhost:1313/projects/" aria-label="" ><span data-feather='code'></span> Projects </a>
+            </div>
+            
+
+            <span class="nav-icons-divider"></span>
+            <div class="nav-link dark-theme-toggle">
+                <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                <a aria-hidden="true" role="switch">
+                    <span class="theme-toggle-icon" data-feather="moon"></span>
+                </a>
+            </div>
+
+            <div class="nav-link" id="hamburger-menu-toggle">
+                <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
+                <a aria-checked="false" aria-labelledby="hamburger-menu-toggle" id="hamburger-menu-toggle-target" role="switch">
+                    <span data-feather="menu"></span>
+                </a>
+            </div>
+
+            
+            <ul class="nav-hamburger-list visibility-hidden">
+                
+                <li class="nav-item">
+                    <a href="http://localhost:1313/" ><span data-feather='home'></span> Home </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="http://localhost:1313/posts/" ><span data-feather='book'></span> Posts </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="http://localhost:1313/projects/" ><span data-feather='code'></span> Projects </a>
+                </li>
+                
+                <li class="nav-item dark-theme-toggle">
+                    <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
+                    <a role="switch">
+                        <span class="theme-toggle-icon" data-feather="moon"></span>
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</header>
+<main id="content">
+    <div class="post container">
+    <div class="post-header-section">
+        <h1>Bash</h1>
+
+        
+
+        
+	
+	
+	
+	
+        
+
+	
+
+	
+
+	
+          <small role="doc-subtitle"></small>
+	
+
+	
+          <p class="post-date">
+              
+
+              March 22, 2025
+
+              
+          </p>
+	
+
+        <ul class="post-tags">
+          
+        </ul>
+    </div>
+
+    <div class="post-content">
+        <p>For some small tasks, sometimes Bash script (shell script in general) is better than a full-blown program using programming languages. Here are some personal tips to write a Bash script:</p>
+<h2 id="exit-on-fail">Exit on fail</h2>
+<p>Use <code>set -o errexit</code> to make the script exit when it fails. If some commands are allowed to fail, <code>command1 || echo &quot;command1 is failed, but continuing&quot;</code> can be used.</p>
+<h2 id="prevent-access-to-undeclared-variables">Prevent access to undeclared variables</h2>
+<p>Use <code>set -o nounset</code> to exit when the script tries to use undeclared variables. Imagine running this command when undeclared variables is allowed:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rm -rf <span style="color:#e6db74">${</span>base_folder<span style="color:#e6db74">}</span>/*
+</span></span></code></pre></div><p>When the variable <code>$base_folder</code> is not set, it will become <code>rm -rf /*</code>.
+If some variables are allowed to be undeclared, use <code>${variable_name:default_value}</code> to set <code>$variable_name</code> to <code>default_value</code> when it&rsquo;s not declared.</p>
+<h2 id="idempotency">Idempotency</h2>
+<p>What is idempotency?</p>
+<blockquote>
+<p>Idempotence is the property of certain operations in mathematics and computer science whereby they can be applied multiple times without changing the result beyond the initial application.</p></blockquote>
+<p>In short, it means that idempotent Bash scripts should have the same effects on the system even when called multiple times. Some example of idempotency in Bash script:</p>
+<h3 id="creating-a-symbolic-link">Creating a symbolic link</h3>
+<p>The basic syntax of creating a symbolic link is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ln -s source target
+</span></span></code></pre></div><p>This is not idempotent, it will fail in the second run because the target is already exists. It can be solved by adding the <code>-f</code> flag:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ln -sf source target
+</span></span></code></pre></div><p>If executed multiple times, it&rsquo;s still not idempotent because it will create a symbolic link inside the previously created symbolic link (nested). The idempotent way to create a symbolic link is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ln -sfn source target
+</span></span></code></pre></div><h3 id="removing-a-file">Removing a file</h3>
+<p>The command <code>rm filename</code> will fail if the file does not exist. Use <code>rm -f</code> instead. To remove directory, use <code>rm -rf</code> instead.</p>
+<h3 id="downloading-a-file">Downloading a file</h3>
+<p>Common usage is to download a file if only it does not exist:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[[</span> ! -f <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>/.local/bin/random_binary <span style="color:#f92672">]]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>  wget -qO <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>/.local/bin/random_binary https://randomsite.com/random_binary
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span></code></pre></div><h2 id="use-curly-brace-when-using-variable-inside-a-string">Use curly brace when using variable inside a string</h2>
+<p>When using variables inside a string, sometimes it&rsquo;s clearer to access the variable with the curly brace. So instead of this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span>$var1_new<span style="color:#e6db74">.yaml&#34;</span>
+</span></span></code></pre></div><p>Prefer this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>var1<span style="color:#e6db74">}</span><span style="color:#e6db74">_new.yaml&#34;</span>
+</span></span></code></pre></div><p>So it&rsquo;s clear that the variable name is <code>var1</code>, not <code>var1_new</code>.</p>
+
+        
+    </div>
+
+    <div class="prev-next">
+        
+    </div>
+
+    
+    
+        <svg id="btt-button" class="arrow-logo" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 384 512" onclick="scrollToTop()" title="Go to top">
+    
+    <path d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z"/>
+</svg>
+<script>
+    let backToTopButton = document.getElementById("btt-button");
+
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTopButton.style.display = "block";
+        } else {
+            backToTopButton.style.display = "none";
+        }
+    }
+
+    function scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+</script>
+
+    
+    
+</div>
+
+
+
+    
+
+        </main><footer class="footer">
+    
+    
+
+    
+
+    
+
+        
+            
+        
+
+        
+
+        
+        
+
+        
+
+    
+
+    
+        <span>&copy; 2025 rshsyari</span>
+    
+
+    <span>
+        Made with &#10084;&#65039; using <a target="_blank" href="https://github.com/gokarna-theme/gokarna-hugo">Gokarna</a>
+    </span>
+</footer>
+</body>
+</html>
