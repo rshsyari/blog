@@ -5,6 +5,7 @@ date: 2025-03-22T21:13:52+07:00
 # lastmod: 2025-03-22
 #showTableOfContents: false
 # tags: ["",]
+url: "/bash/"
 title: "Bash"
 type: "post"
 draft: false

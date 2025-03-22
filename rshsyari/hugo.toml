@@ -1,4 +1,6 @@
-baseURL = 'https://rshsyari.github.io/'
+baseURL = "https://rshsyari.github.io/"
+relativeURLs = true
+canonifyURLs = true
 languageCode = 'en-us'
 title = 'rshsyari'
 theme = "gokarna"
@@ -19,7 +21,6 @@ home = ["HTML", "RSS", "JSON"]
   homeLayout = "list"
   numberPostsOnHomePage = 4
   showPostsOnHomePage = "recent"
-
 
   socialIcons = [
     {name = "linkedin", url = "https://www.linkedin.com/in/rshsyari"},
