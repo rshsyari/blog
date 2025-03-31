@@ -4,7 +4,6 @@ date: 2025-03-22T23:58:38+07:00
 # image: ""
 # lastmod: 2025-03-22
 showTableOfContents: true
-# showTableOfContents: false
 # tags: ["",]
 title: "Ansible Block"
 type: "post"

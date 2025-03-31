@@ -15,17 +15,23 @@ theme = "gokarna"
 home = ["HTML", "RSS", "JSON"]
 
 [params]
+  avatarAltText = "avatar"
+  avatarSize = "size-s"
+  avatarURL = "/images/penguin.jpg"
+
   env = "production"
-  homeInfoParams = { Title = "Blog of rshsyari" }
+  homeInfoParams = { Title = "rshsyari" }
   mainSections = ["posts"] 
 
   footer = "rshsyari"
-  description = "Indonesia government sucks"
+  description = "Indonesian government sucks"
   metaKeywords = ["blog", "gokarna", "hugo"]
   showBackToTopButton = true
   homeLayout = "list"
-  numberPostsOnHomePage = 5
-  showPostsOnHomePage = "recent"
+  numberPostsOnHomePage = 6
+  showPostsOnHomePage = "popular" 
+
+
 
   socialIcons = [
     {name = "linkedin", url = "https://www.linkedin.com/in/rshsyari"},
@@ -52,3 +58,12 @@ home = ["HTML", "RSS", "JSON"]
     pre = "<span data-feather='code'></span>"
     url = "/projects/"
     weight = 3
+
+[[headers]]
+  for = '/**'
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://trusted.cdn.com; object-src 'none'; base-uri 'self'; form-action 'self'; style-src 'self' https://trusted.cdn.com; frame-ancestors 'none'; upgrade-insecure-requests;"
+    Referrer-Policy = 'strict-origin-when-cross-origin'
+    X-Content-Type-Options = 'nosniff'
+    X-Frame-Options = 'DENY'
+    X-XSS-Protection = '1; mode=block'
