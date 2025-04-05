@@ -5,7 +5,7 @@ date: 2025-03-31T23:55:07+07:00
 # lastmod: 2025-03-31
 showTableOfContents: false
 # tags: ["",]
-title: "LDAP Shell Script"
+title: "LDAP Script"
 type: "post"
 ---
 Managing LDAP can sometimes get complicated. Especially if it gets to the point where there are a huge amount of users. Using shell script can help reduce the stress and increase efficiency in managing those users.
@@ -13,8 +13,6 @@ Managing LDAP can sometimes get complicated. Especially if it gets to the point 
 For example, here we have 2 shell scripts, one for adding users, and the other for deleting users. Let's take a closer look:
 
 ## Add User
-> /usr/local/bin/add_ldap_user.sh
-
 ```bash
 #!/usr/bin/env bash
 
@@ -69,8 +67,6 @@ fi
 With scripts like this, you no longer have to write manual ldif file for each user, or spending a lot of times just to add some users. You can just write the bash script in the intended way, and poof! The user exists...
 
 ## Delete User
-> /usr/local/bin/delete_ldap_user.sh
-
 ```bash
 #!/usr/bin/env bash
 
@@ -101,6 +97,7 @@ Or if you want to, you could specify the OU in the deletion script, so it would 
 
 But let's say for example, you want to add LDAP users by converting it from a CSV File, well for this kinda task, I myself prefer to use Ansible! Let's see some example below...
 
+## Import from CSV
 ```yaml
 - name: Configure LDAP server
   hosts: ldap

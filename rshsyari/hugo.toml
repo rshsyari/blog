@@ -65,5 +65,5 @@ home = ["HTML", "RSS", "JSON"]
     Content-Security-Policy = "default-src 'self'; script-src 'self' https://trusted.cdn.com; object-src 'none'; base-uri 'self'; form-action 'self'; style-src 'self' https://trusted.cdn.com; frame-ancestors 'none'; upgrade-insecure-requests;"
     Referrer-Policy = 'strict-origin-when-cross-origin'
     X-Content-Type-Options = 'nosniff'
-    X-Frame-Options = 'DENY'
+    X-Frame-Options = 'SAMEORIGIN'
     X-XSS-Protection = '1; mode=block'
