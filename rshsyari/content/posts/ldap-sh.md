@@ -3,7 +3,7 @@ date: 2025-03-31T23:55:07+07:00
 # description: ""
 # image: ""
 # lastmod: 2025-03-31
-showTableOfContents: false
+showTableOfContents: true
 # tags: ["",]
 title: "LDAP Script"
 type: "post"
@@ -13,61 +13,64 @@ Managing LDAP can sometimes get complicated. Especially if it gets to the point 
 For example, here we have 2 shell scripts, one for adding users, and the other for deleting users. Let's take a closer look:
 
 ## Add User
-```bash
+```sh
 #!/usr/bin/env bash
 
 # Validate arguments
 if [ -z $1 ] || [ -z $2 ]; then
-	echo "Please run it as: ./add_ldap_user.sh <OU> <USER>"
+	echo "Please run it as: ./add_ldap_user.sh <OU|none> <USER>"
 	exit 1
 fi
 
-# Check if the user already exists
+# Validate user; if exists, abort
 if ldapsearch -xb dc=example,dc=com "uid=$2" | grep -q "uid: $2"; then
 	echo "User $2 already exist!"
 	exit 1
 fi
 
-# Validate the OU; it should exist, if not then create it
-if ! ldapsearch -xb dc=example,dc=com "ou=$1" | grep -q "ou: $1"; then
-    echo "Organizational Unit '$1' does not exist! Creating..."
-    ldapadd -xD cn=admin,dc=example,dc=com -w P@ssw0rd <<EOF
-    dn: ou=$1,dc=example,dc=com
-    objectClass: top
-    objectClass: organizationalUnit
-    ou: $1
-    description: $1 organizational unit
-EOF
+# Validate OU; if none, omit; if invalid, abort
+ou_check=$(echo $(ldapsearch -xb dc=example,dc=com "ou=$1" | grep -q "ou: $1") $?)
 
-# Execute the user addition
-ldapadd -cxD cn=admin,dc=example,dc=com -w P@ssw0rd <<EOF
-dn: uid=$2,ou=$1,dc=example,dc=com
+if [[ $ou_check == "0" ]]; then
+	DN="cn=$2,ou=$1,dc=example,dc=com"
+
+elif [[ ${1,,} == "none" ]]; then
+	DN="cn=$2,dc=example,dc=com"
+
+else
+	echo "Organizational Unit $1 is invalid, aborting..."
+fi
+
+# Set encrypted password
+pass=$(slappasswd -s very_secure_password)
+
+# Execute user addition
+ldapadd -xD cn=admin,dc=example,dc=com -w very_secure_password <<EOF
+dn: $DN
 objectClass: top
 objectClass: inetOrgPerson
 objectClass: posixAccount
 cn: $2
-sn $2
+sn: $2
 uid: $2
-userPassword: $pass
-uid: $((1100 + $RANDOM % 10000))
-gid: $((1100 + $RANDOM % 10000))
-homeDirectory: /home/$2
 gecos: $2
-description: $2 user account
+userPassword: $pass
+uidNumber: $((1100 + $RANDOM % 10000))
+gidNumber: $((1100 + $RANDOM % 10000))
+homeDirectory: /home/$2
+loginShell: /bin/bash
+description: $2 account
 EOF
-
-if [ $? -eq 0 ]; then
-    echo "User '$2' successfully added to OU '$1'."
-else
-    echo "Failed to add user '$2' to OU '$1'."
-    exit 1
-fi
 ```
 
 With scripts like this, you no longer have to write manual ldif file for each user, or spending a lot of times just to add some users. You can just write the bash script in the intended way, and poof! The user exists...
 
+If you are using LDAP over SSL or LDAP with STARTTLS, I suggest you take a closer look and modify some parts of the script yourself, because I used plain LDAP connection when writing the script.
+
+Anyway, here is one for user deletion..
+
 ## Delete User
-```bash
+```sh
 #!/usr/bin/env bash
 
 # Validate arguments
@@ -76,20 +79,22 @@ if [ -z $1 ]; then
 	exit 1
 fi
 
-# Validate user; it should exists in order to be deleted
-if ! ldapsearch -xb dc=example,dc=com "uid=$2" | grep -q "uid: $2"
-	echo "User $1 doesn't exist on LDAP database!"
+if ! ldapsearch -xb dc=example,dc=com "cn=$1" | grep -q "cn=$1"; then
+	echo "User $1 doesn't exists on LDAP database"
 	exit 1
 fi
 
+# Define user DN
+DN=$(ldapsearch -x -LLL -b "dc=example,dc=com" "(uid=$1)" | grep ^dn | awk '{ print $NF }'
+
 # Executes the deletion
-ldapdelete -xD cn=admin,dc=example,dc=com -w P@ssw0rd "uid=$1,ou=*,dc=example,dc=com"
+ldapdelete -xD cn=admin,dc=example,dc=com -w very_secure_password $DN
 
 if [ $? -eq 0 ]; then
-    echo "User $1 has been deleted!"
+	echo "User $1 has been deleted"
 else
-    echo "Failed to delete user '$1'."
-    exit 1
+	echo "User $1 deletion failed"
+	exit 1
 fi
 ```
 
@@ -113,20 +118,19 @@ But let's say for example, you want to add LDAP users by converting it from a CS
 
   - name: Make sure slapd is installed
     apt:
-      name: slapd,python3-ldap
+      name: slapd
 
   - name: Import users to ldap
     community.general.ldap_entry:
       state: present
       server_uri: ldap://localhost/
       bind_dn: cn=admin,dc=example,dc=com
-      bind_pw: P@ssw0rd
+      bind_pw: very_secure_password
       dn: uid="{{ item.username }}",dc=example,dc=com
       objectClass:
         - top
         - inetOrgPerson
         - posixAccount
-        - shadowAccount
       attributes:
         uid: "{{item.username}}"
         cn: "{{ item.username }}"

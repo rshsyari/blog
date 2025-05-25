@@ -23,7 +23,7 @@ e.g. in the playbook below, we are configuring a AD Domain Services of a domain 
     data: "{{ lookup('file','/etc/ansible/customers.json') | from_json }}"
   tasks:
     - name: Create AD OU
-        community.windows.win_domain_ou:
+      community.windows.win_domain_ou:
         name: "{{ item.name }}"
         path: "dc=customers,dc=com"
       loop: "{{ data }}"
@@ -31,7 +31,7 @@ e.g. in the playbook below, we are configuring a AD Domain Services of a domain 
       tags: dc
 
     - name: Create AD Group
-        community.windows.win_domain_group:
+      community.windows.win_domain_group:
         name: "{{ item.name }}"
         path: "ou={{ item.name }},dc=customers,dc=com"
       loop: "{{ data }}"
@@ -39,7 +39,7 @@ e.g. in the playbook below, we are configuring a AD Domain Services of a domain 
       tags: dc
 
     - name: Create AD User
-        community.windows.win_domain_user:
+      community.windows.win_domain_user:
         name: "{{ item.username }}"
         password: "{{ item.password }}"
         path: "ou={{ item.name }},dc=customers,dc=com"
@@ -158,7 +158,7 @@ Let's say we want to use rescue in addition to our earlier playbook, we want tha
 ```yaml
   tasks:
     - block:
-      ...
+          # Your code here
       rescue:
         - name: Display error
           debug: msg="{{ ansible_failed_result }}"
@@ -169,22 +169,18 @@ Lastly, there is `always` which will always run no matter the state of a previou
 ```yaml
   tasks:
     - block:
-      ...
         - name: Accumulate success
           ansible.builtin.set_fact:
             result:
               host: "{{ inventory_hostname }}"
               status: "OK"
               interfaces: "{{ ansible_facts['interfaces'] }}"
-      ...
       rescue:
-      ...
         - name: Accumulate failure
           ansible.builtin.set_fact:
             result:
               host: "{{ inventory_hostname }}"
               status: "FAIL"
-      ...
       always:
         - name: Will always run after the main block
           block:
